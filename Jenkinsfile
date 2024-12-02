@@ -16,15 +16,8 @@ pipeline {
         }
         stage('Run Tests') {
             steps {
-                echo 'Ejecutando pruebas con control de tiempo...'
-                timeout(time: 5, unit: 'MINUTES') {
-                    script {
-                        def testResult = sh(script: 'npm test', returnStatus: true)
-                        if (testResult != 0) {
-                            echo "Las pruebas fallaron o terminaron forzosamente, pero la pipeline continuará."
-                        }
-                    }
-                }
+                echo 'Ejecutando pruebas...'
+                sh 'npm test -- --forceExit'
             }
         }
         stage('Build') {
