@@ -16,12 +16,8 @@ pipeline {
         }
         stage('Run Tests') {
             steps {
-                echo 'Ejecutando pruebas...'
-                script {
-                    def testResult = sh(script: 'npm test', returnStatus: true)
-                        if (testResult != 0) {
-                            echo "Las pruebas fallaron, pero la pipeline continuará."
-                        }
+                timeout(time: 10, unit: 'MINUTES') {  // Configura el tiempo máximo
+                    sh 'npm test'
                 }
             }
         }
