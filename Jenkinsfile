@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Run Tests') {
             steps {
-                timeout(time: 10, unit: 'MINUTES') {  // Configura el tiempo máximo
+                timeout(time: 10, unit: 'SECONDS') {  // Configura el tiempo máximo
                     sh 'npm test'
                 }
             }
